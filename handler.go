@@ -111,6 +111,9 @@ func receiver(router *Router, addr net.Addr, buf []byte) {
 			Packet:  packet,
 			router:  router,
 		}
-		router.eventRoutes[packet.EventID].Handler.ServeUDPFunc(&context)
+		r, ok := router.eventRoutes[packet.EventID]
+		if ok {
+			r.Handler.ServeUDPFunc(&context)
+		}
 	}
 }

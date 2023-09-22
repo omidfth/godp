@@ -23,3 +23,73 @@ $ go get -u github.com/omidfth/godp
 ### Quick Start
 First you need to import Godp package for using Godp, one simplest example likes the follow:
 
+**Server:**
+```go
+import (
+    "encoding/json"
+    "github.com/omidfth/godp"
+)
+
+func main() {
+    r := godp.NewRouter()
+    r.NewRoute(godp.PING, OnPing)
+    r.ListenAndServe(1055, godp.MaxBufferSize)
+}
+
+func OnPing(c *godp.Context) {
+    c.GetPingService().Ping(c.Packet.SocketID)
+    packet := godp.MakePacket(c.Packet.SocketID, c.Packet.RoomID, godp.PING, nil)
+    j, _ := json.Marshal(packet)
+    c.Emit(c.Address, j)
+}
+```
+
+**Test:**
+```go
+import (
+    "log"
+    "net"
+    "os"
+)
+
+const (
+    HOST = "localhost"
+    PORT = "1055"
+    TYPE = "udp"
+)
+
+func main() {
+    udpServer, err := net.ResolveUDPAddr(TYPE, HOST+":"+PORT)
+    log.Println("Attempt Connect to:", HOST+":"+PORT, TYPE)
+
+    if err != nil {
+        println("ResolveUDPAddr failed:", err.Error())
+        os.Exit(1)
+    }
+
+    conn, err := net.DialUDP("udp", nil, udpServer)
+        if err != nil {
+            println("Listen failed:", err.Error())
+        os.Exit(1)
+    }
+
+    //close the connection
+    defer conn.Close()
+        _, err = conn.Write([]byte("{\"s\":null,\"e\":0,\"d\":{\"u\":\"\",\"s\":\"\"},\"r\":null}"))
+        if err != nil {
+            println("Write data failed:", err.Error())
+        os.Exit(1)
+    }
+
+    // buffer to get data
+    received := make([]byte, 1024)
+        _, err = conn.Read(received)
+        if err != nil {
+            println("Read data failed:", err.Error())
+        os.Exit(1)
+    }
+
+    println(string(received))
+}
+```
+

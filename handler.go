@@ -3,10 +3,10 @@ package godp
 import (
 	"encoding/json"
 	"fmt"
-	"godp/internal/debugger"
-	"godp/internal/events"
-	"godp/models"
-	"godp/services"
+	"github.com/omidfth/godp/internal/debugger"
+	"github.com/omidfth/godp/internal/events"
+	"github.com/omidfth/godp/models"
+	"github.com/omidfth/godp/services"
 	"log"
 	"net"
 )

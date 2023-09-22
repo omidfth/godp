@@ -1,7 +1,7 @@
 package services
 
 import (
-	"godp/models"
+	"github.com/omidfth/godp/models"
 	"net"
 )
 

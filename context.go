@@ -1,9 +1,9 @@
 package godp
 
 import (
-	"audio_stream/events"
 	"encoding/json"
 	"godp/internal/debugger"
+	"godp/internal/events"
 	"godp/models"
 	"godp/services"
 	"net"

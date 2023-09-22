@@ -1,10 +1,10 @@
 package godp
 
 import (
-	"audio_stream/events"
 	"encoding/json"
 	"fmt"
 	"godp/internal/debugger"
+	"godp/internal/events"
 	"godp/models"
 	"godp/services"
 	"log"

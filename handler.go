@@ -18,6 +18,7 @@ var (
 )
 
 const udpDebugTag = "UDP::"
+const MaxBufferSize = 65047
 
 func NewRouter() *Router {
 	socketService := services.NewSocketService()

@@ -10,5 +10,16 @@
 With [Go module]("https://github.com/golang/go/wiki/Modules") support, simply add the following import
 
 ```
-import "github.com/gin-gonic/gin"
+import "github.com/omidfth/godp"
 ```
+to your code, and then `go [build|run|test]` will automatically fetch the necessary dependencies.
+
+Otherwise, run the following Go command to install the `godp` package:
+```sh
+$ go get -u github.com/omidfth/godp
+```
+
+## How to Use?
+### Quick Start
+First you need to import Godp package for using Godp, one simplest example likes the follow:
+

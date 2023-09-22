@@ -1,4 +1,4 @@
-package udp
+package godp
 
 import (
 	"audio_stream/events"

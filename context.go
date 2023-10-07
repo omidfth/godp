@@ -7,6 +7,7 @@ import (
 	"github.com/omidfth/godp/models"
 	"github.com/omidfth/godp/services"
 	"net"
+	"time"
 )
 
 type Context struct {
@@ -44,4 +45,20 @@ func (c *Context) EmitTo(roomId string, buf []byte) {
 			c.Emit(socket.Address, buf)
 		}
 	}
+}
+
+func (c *Context) Deadline() (deadline time.Time, ok bool) {
+	return time.Now(), true
+}
+
+func (c *Context) Done() <-chan struct{} {
+	return nil
+}
+
+func (c *Context) Err() error {
+	return nil
+}
+
+func (c *Context) Value(key any) any {
+	return key
 }
